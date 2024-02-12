@@ -1,0 +1,40 @@
+<!-- 
+  This file uses pre-made icons 
+  Date: 5/30/2023
+  Based off:
+  Source URL: https://www.w3schools.com/howto/howto_css_icon_buttons.asp
+              https://www.w3schools.com/icons/fontawesome_icons_directional.asp
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocktail App</title>
+</head>
+<body>
+    <div class="content">
+        <div class="authorizations">
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+        </div>
+        <a href="/" button class="btn"><i class="fa fa-home"></i>  Home</a></button>
+        <h1>Welcome to the Cocktail App!</h1>
+        <p>This platform curates cocktail recipes based on the ingredients you have on hand.</p>
+        <p>What ingredients do you have?</p>
+        <form action="/add_ingredient" method="post">
+            <div class="ingredient-container">
+                <input type="text" name="ingredient" placeholder="Add ingredients">
+                <button type="submit" class="add-btn">Add <i class="fas fa-plus"></i></button>
+            </div>
+            </form>
+        <ul>
+            {% for ingredient in ingredients %}
+                <li>{{ ingredient }} <a href="/remove_ingredient/{{ ingredient }}">[X]</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
